@@ -16,6 +16,7 @@ const Poster = () => (
       <div className={styles.image}>
         <img src={BG} alt="" />
       </div>
+      {/* hello */}
     </div>
   </section>
 );
