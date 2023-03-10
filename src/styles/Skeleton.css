@@ -1,0 +1,10 @@
+.productSkeleton {
+  display: flex;
+  align-items: start;
+  /* column-gap: 20px; */
+  justify-content: space-between;
+}
+
+.mb {
+  margin: 5px 0;
+}

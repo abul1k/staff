@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import ProductSkeleton from "../../Additionals/ProductSkeleton";
 
 import { useGetProductQuery } from "../../features/api/apiSlice";
 import { getRelatedProducts } from "../../features/products/productsSlice";
@@ -11,6 +12,7 @@ import Product from "./Product";
 import Products from "./Products";
 
 const SingleProduct = () => {
+  const [playSkeleton, setPlaySkeleton] = useState(true);
   const dispatch = useDispatch();
   const { id } = useParams();
   const navigate = useNavigate();
@@ -31,8 +33,22 @@ const SingleProduct = () => {
     dispatch(getRelatedProducts(data.category.id));
   }, [data, dispatch, list.length]);
 
-  return !data ? (
-    <section className="preloader">Loading...</section>
+  useEffect(() => {
+    return () => {
+      setTimeout(() => {
+        setPlaySkeleton(false);
+      }, 1000);
+    };
+  });
+
+  setTimeout(() => {
+    setPlaySkeleton(false);
+  }, 1000);
+
+  return !data && playSkeleton ? (
+    <section className="preloader">
+      <ProductSkeleton />
+    </section>
   ) : (
     <>
       <Product {...data} />

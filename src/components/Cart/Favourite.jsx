@@ -49,7 +49,7 @@ const Cart = () => {
                     className={styles.toCart}
                     onClick={() => addToCard(item)}
                   >
-                    Send to card
+                    Add to card
                   </button>
 
                   <div
